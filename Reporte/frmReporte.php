@@ -1,4 +1,6 @@
 <?php
+
+
 ini_set('display_errors', '1');
 
 include_once("mpdf/mpdf.php");
@@ -17,7 +19,7 @@ include_once ('../clsDetalle_inspeccion_visual.php');
 include_once ('../clsDetalle_inspeccion_funcionamiento.php');
 
 
-rpt_sistema_integral("1");
+rpt_sistema_integral("19");
 
 //rpt_formulario_twin_shot("1");
 
@@ -47,40 +49,67 @@ $rpt_peso=$peso->get_formulario_peso_por_id_sim($id_sistema);
 
 $html.='
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="utf-8">
-    <title>SISTEMA INTEGRAL DE MONITOREO</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  <title>SISTEMA INTEGRAL DE MONITOREO</title>
      <style type="text/css">
       
-      #tabla_contenido,#tabla_puntuacion{
+      #tabla_contenido{
         border:1px solid #000; 
         align-content: top;
         background: #d9ffcc;
         width: 100%;
-       
+
                }
+
+
+      #tabla_firmajefe{
+     left: 500px; top: 200px;    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+align-content=center
+           table-layout: fixed;
+vertical-align: middle;
+display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+             }
+
+      #tabla_puntuacion{
+        border:1px solid #000; 
+        align-content: top;
+        background: #d9ffcc;
+        width: 100%;
+           table-layout: fixed;
+                 }
       
       #tabla_puntuacion2{
         border:1px solid #000; 
-        align-content: top;
-        color: black;
         background: #025522";
         width: 100%;
-        text-align:center
-        height: 240%;
-
-             }
+           }
 
       #tabla_puntuacion3{
         border:1px solid #000; 
         align-content: top;
         color: white;
         background: #025522";
-        width: 100%;
+
 }
-             #tabla_puntuacion4{
-}
+       #tabla_puntuacion4{
+
+      width: 100%;
+
+           }
+
+       #tamaño{
+                   border:1px solid #000; 
+
+           table-layout: fixed;
+      vertical-align: top;
+      border
+
+         }
 
 
        th{
@@ -88,7 +117,8 @@ $html.='
         color: white;
         height: 50px;
         text-align: center;
-        
+                    
+
        }
        
         #1{
@@ -169,7 +199,7 @@ $html.='
       <tr class="headerrow">
         
         <td class="evenrow" >
-         <b >EMPRESA:</b>'.$rpt_sim->empresa.'  <br>
+         <b >EMPRESA:</b> '.$rpt_sim->empresa.'  <br>
          <b>GRANJA:</b>'. $rpt_sim->granja .'<br>
          <b>EDAD: </b>'. $rpt_sim->edad .' años<br>
          <b >SEXO: </b>'. $rpt_sim->sexo.'<br>
@@ -204,12 +234,12 @@ $html.='
           <tr>
             <th  id="1" style="background-color: #025522">Peso Corporal</th>
             <th  id="1" style="background-color: #025522">Peso Bursa</th>
-            <th  id="1" style="background-color: #025522">Peso de Brazo </th>
+            <th  id="1" style="background-color: #025522">Peso de Bazo </th>
             <th  id="1" style="background-color: #025522">Peso de Timo </th>
-            <th  id="1" style="background-color: #025522">Peso de Higado </th>
+            <th  id="1" style="background-color: #025522">Peso de Hígado </th>
             <th  id="1" style="background-color: #025522">Indice Bursal </th>
-            <th  id="1" style="background-color: #025522">Indice Timico</th>
-            <th  id="1" style="background-color: #025522">Indice Hepatico</th>
+            <th  id="1" style="background-color: #025522">Indice Tímico</th>
+            <th  id="1" style="background-color: #025522">Indice Hepático</th>
             <th  id="1" style="background-color: #025522">Bursometro</th>
           </tr>';
          
@@ -244,7 +274,7 @@ $html.='
             }
           }
                  
-    $html.='</table><br><table>';
+    $html.='</table><br><br><table id="tamaño">';
 
 
 
@@ -253,14 +283,14 @@ $html.='
             while ($objeto=mysqli_fetch_object($rpt_puntuacion)) {
                $bajo=$objeto->id % 2;
                if($bajo==1){
-                $html.='<br><tr>';
+                $html.='<br><><br><tr>';
               }
-              $html.='<td > <div id=div_tabla><table id="tabla_puntuacion2">';
+              $html.='<td > <table id="tabla_puntuacion4">';
 
               $rpt_detalle_puntuacion=$detalle_puntuacion->get_formulario_detalle_puntuacion_por_id_sim_y_puntuacion($id_sistema,$objeto->id);
               $html.='
-                <tr>
-                <th colspan=2 id="tabla_puntuacion3">'.
+                <tr  id="tabla_puntuacion3" style="background-color: #E7F3EB">
+                <th colspan=2 id="tabla_puntuacion2">'.
                 $objeto->id.' '.$objeto->nombre.'
                 
 
@@ -272,15 +302,15 @@ $html.='
               while($fila=mysqli_fetch_object($rpt_detalle_puntuacion)){             
             $html.='
 
-                  <tr style="background-color: #E7F3EB" >
-                  <td id="tabla_puntuacion4" >'.$fila->nombre.'</td>
+                  <tr style="background-color: #E7F3EB" id="tabla_puntuacion3">
+                  <td >'.$fila->nombre.'</td>
                   <td >'.$fila->estado.'</td>
-                  </tr>
+                  </tr><br>
 
                   ';
             }
           }
-           $html.='</table></div> </td>';
+           $html.='</table> </td>';
           if($bajo==1){
                $html.='</tr>';
               }
@@ -330,19 +360,28 @@ if(file_exists("../".$rpt_sim->imagen_jefe))
 }
 
 $html.='<th><h3>IMAGENES</h3></th>';
-$html.="<img src='$src_imagen1' width=300px/><br>Imagen #1<br><br>";
-$html.="<img src='$src_imagen2' width=300px/><br>Imagen #2<br><br>";
-$html.="<img src='$src_imagen3' width=300px/><br>Imagen #3<br><br>";
-$html.="<img src='$src_imagen4' width=300px/><br>Imagen #4<br><br>";
-$html.="<img src='$src_imagen5' width=300px/><br>Imagen #5<br><br>";
 
-$html.="<table id=tabla_contenido>
-<tr>
-<th>IMAGEN DE JEFE DE PLANTA</th>
+$html.="<table id=tabla_firmajefe><tr><td><img src='imagen/jefe.jpg' width=150px/></td>";
+
+$html.="<td><img src='imagen/jefe.jpg' width=150px/></td>";
+
+$html.="<td><img src='imagen/jefe.jpg' width=150px/></td>";
+
+$html.="<td><img src='imagen/jefe.jpg' width=150px/></td>";
+
+$html.="<td><img src='imagen/jefe.jpg' width=150px/></td></tr></table>";
+
+$html.="<br><br><br><table id=tabla_firmajefe>
+
+
+
+
+<tr >
+<th style='background-color: #025522'>IMAGEN DE JEFE DE PLANTA</th>
 </tr>
 <tr>
-<td>
-<img src='$src_imagen_jefe' width=300px/>
+<td >
+<img src='imagen/jefe.jpg' width=300px />
 </td>
 </tr>
 </table>
@@ -351,17 +390,17 @@ $html.="<table id=tabla_contenido>
 <br>
 ";
 
-$html.="<table id=tabla_contenido>
-<tr>
-<th>FIRMA INVETSA</th>
-<th>FIRMA EMPRESA</th>
+$html.="<table >
+<tr >
+<th style='background-color: #025522'>FIRMA INVETSA</th>
+<th style='background-color: #025522'>FIRMA EMPRESA</th>
 </tr>
 <tr>
 <td>
-<img src='$src_firma_invetsa' width=300px/>
+<img src='imagen/firma1.jpg' width=300px/>
 </td>
 <td>
-<img src='$src_firma_empresa' width=300px/>
+<img src='imagen/firma1.jpg' width=300px/>
 </td>
 </tr>
 </table>
@@ -382,9 +421,10 @@ else
 */
 $html.='
     <footer>
-  
-<td> <img src="imagen/pollito1.png" width="20%"></td>
-
+  <table id=tabla_firmajefe>
+  <tr>
+<td > <img src="imagen/pollito1.png" align="center" width="20%"></td></tr>
+</table>
     </footer>
   </body>
  
@@ -393,6 +433,7 @@ $html.='
 
 
 $mPDF=new mPDF("c","A4");
+$html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 $mPDF->writeHTML($html);
 
 

@@ -10,7 +10,7 @@ class Conexion{
 //constructor
 public function Conexion()
 {
-        $this->servidor = "127.0.0.1";
+        $this->servidor = "localhost";
         $this->usuario = "root";
         $this->password = "qw";
         $this->basedatos = "invetsa";
