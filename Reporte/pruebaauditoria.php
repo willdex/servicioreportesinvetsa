@@ -38,6 +38,8 @@ $viabilidad_celular=New Viabilidad_celular();
 
 $mantenimiento_limpieza=New Mantenimiento_limpieza();
 
+$detalle_accion=New Detalle_accion();
+
 //*///
 
 $id_hoja=$id_verificacion;
@@ -46,6 +48,9 @@ $id_hoja=$id_verificacion;
 $rpt_hoja=$hoja_verificacion->get_formulario_por_id($id_hoja);
 
 $rpt_accion=$accion->get_formulario_por_id_hoja($id_hoja);
+
+$rpt_detalle=$detalle_accion->get_formulario_por_id_hoja_y_id_accion($id_hoja);
+
 
 $rpt_manipulacion_dilucion=$manipulacion_dilucion->get_formulario_por_id_hoja($id_hoja);
 
@@ -282,37 +287,26 @@ $html.='<!DOCTYPE html>
           
             <tr style=background-color:#E7F3EB>
               <td >Temperatura 24 a 27°C</td>
-               <td>'.$rpt_accion->encontrado.'</td>
+               <td>'.$rpt_linea_genetica->cobb.'</td>
                <td>Humedad 65% HR</td>
-               <td colspan="20">$VALOR</td>
-            </tr>
+               <td colspan="20">'.$rpt_linea_genetica->cobb.'</td>
+            </tr>                
+              <tr>
+              <td >Ventilación Forzada</td>
+              <td >'.$rpt_detalle->esperado.'</td>
+              <td >Presión Positiva</td>
+              <td colspan="20">'.$rpt_detalle->id.'</td></tr>
+                <tr>
+              <td >Limpieza después de c/ vacunación</td>
+              <td ></td>
+              <td >Desinfección Post Limpieza</td>
+              <td colspan="20"></td></tr>
+
+          
 
             
 
-            </tr>';
-
-            if($rpt_accion!="-1"){
-              while ($fila=mysqli_fetch_object($rpt_accion)) {
-                if($fila->id=="1")
-              {
-                $html.='<tr style="background:#61579c;">';
-
-              }  # code...
-              else
-              {
-                  $html.='<tr>';
-
-              }
-
-              $html.='
-              <tr>
-              <td >Ventilación Forzada</td>
-              <td >'.$fila->presion.'</td>
-              <td >Presión Positiva</td>
-              <td colspan="20"></td></tr>';
-              }
-
-            }';
+         
                        
 
 
@@ -328,29 +322,29 @@ $html.='<!DOCTYPE html>
 
             <tr style=background-color:#E7F3EB>
               <td>Guantes y Lentes</td>
-               <td>$VALOR</td>
-               <td>T°27 a 37°C(Promedio 32°C)</td>
+               <td></td>
+               <td>Calentador de Agua</td>
                <td colspan="20">$VALOR</td>
             </tr>
 
             <tr style=background-color:#E7F3EB>
-              <td>Rompe Ampollas</td>
-              <td>$VALOR</td>
-              <td>Jeringas 5 y/o 10ml</td>
+              <td>Recipiente de Agua</td>
+              <td></td>
+              <td>Termómetro</td>
               <td colspan="20">$VALOR</td>
 
             </tr>
 
  <tr stylebackground-color:#E7F3EB>
-              <td>ro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
+              <td>T°27 a 37° C(Promedio 32°C)</td>
+              <td></td>
+              <td>Soporte de Ampollas</td>
+              <td colspan="20"></td>
             </tr>
          
 
            <tr stylebackground-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
+              <td>Rompe Ampollas</td>
                <td>2(M y S)</td>
                <td>Ross - Cobb</td>
                <td colspan="20">Ross - Cobb</td>
