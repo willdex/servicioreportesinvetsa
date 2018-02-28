@@ -17,7 +17,7 @@ include_once('../clsAccion.php');
 
 //rpt_sistema_integral("15");
 
-rpt_hoja_verificacion("11");
+rpt_hoja_verificacion("29");
 
 function rpt_hoja_verificacion($id_verificacion)
 { 
@@ -38,6 +38,8 @@ $viabilidad_celular=New Viabilidad_celular();
 
 $mantenimiento_limpieza=New Mantenimiento_limpieza();
 
+$detalle_accion=New Detalle_accion();
+
 //*///
 
 $id_hoja=$id_verificacion;
@@ -46,6 +48,9 @@ $id_hoja=$id_verificacion;
 $rpt_hoja=$hoja_verificacion->get_formulario_por_id($id_hoja);
 
 $rpt_accion=$accion->get_formulario_por_id_hoja($id_hoja);
+
+$rpt_detalle=$detalle_accion->get_formulario_por_id_hoja_y_id_accion($id_hoja);
+
 
 $rpt_manipulacion_dilucion=$manipulacion_dilucion->get_formulario_por_id_hoja($id_hoja);
 
@@ -66,7 +71,7 @@ $html.='<!DOCTYPE html>
      <style type="text/css">
        #tabla_contenido,#tabla_puntuacion{
         border:1px solid #000; 
-        margin: 5px;
+        margin: 45px;
         align-content: top;
         background: #d9ffcc;
         table-layout: fixed;
@@ -125,43 +130,66 @@ $html.='<!DOCTYPE html>
 
        }
 
+
+      #tabla_firmajefe{
+     left: 500px; top: 200px;    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+align-content=center
+           table-layout: fixed;
+vertical-align: middle;
+display: block;
+    margin-left: auto;
+    margin-right: auto;
+
       #manipulacion tr td {
           width: 50px;
           border: 1px solid #000;
           font-size: 14px;
-           margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-    height: 400px;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: left;
+          height: 400px;
   }
-     
+
+     #mantenimiento{
+      width: 850px;
+      background-color: #025522;
+}
 
            #manipulacion  {
-          width: 850px;
-          border: 1px solid #000;
-          font-size:15px;
-           margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-    height: 400px;
+            width: 850px;
+            border: 1px solid #000;
+            font-size:15px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            height: 400px;
   } 
         #input{
-
         width: 200px;
         height: 200px;
         align-content: right;
 }
 
+          #puntajetotal {
+            width: 700px;
+
+}
+
+
 
         #irregularidades tr th
        {
+
         border: 1px solid #000;
         padding-left: 8px;
         width: 30px;
 
        }
+
        #irregularidades tr td
        {
+
         border: 2px solid #000;
         padding-left: 8px;
         border-bottom: 1px;
@@ -225,24 +253,24 @@ $html.='<!DOCTYPE html>
       <tr class="headerrow">
         
         <td class="evenrow" >
-         <b >EMPRESA:</b>'.$rpt_hoja->empresa.'  <br>
-         <b>GRANJA:</b>'.$rpt_hoja->unidad .'<br>
-         <b>UNIDAD: </b>'.$rpt_hoja->tecnico.'<br>
-         <b >RESPONSABLE DE INVETSA: </b>'. $rpt_hoja->responsable_invetsa.'<br>
+         <b >EMPRESA:</b>Avesca  <br>
+         <b>GRANJA:</b>Granja 1<br>
+         <b>UNIDAD: </b>Unidad 10<br>
+         <b >RESPONSABLE DE INVETSA: </b>Carlos P.<br>
         </td>
 
-         <td style="text-align: center;"><b> HORA DE INGRESO:</b>'. $rpt_hoja->hora_ingreso .' <br>
-         <b>HORA DE SALIDA:</b> '. $rpt_hoja->hora_salida .'<br>
-         <b>RESPONSABLE DE INCUBADORA:</b> '. $rpt_hoja->responsable_incubadora .'<br>
-         <b>FECHA:</b> '. $rpt_hoja->fecha .'<br>
+         <td style="text-align: left;"><b> HORA DE INGRESO:</b>02:30:45 <br>
+         <b>HORA DE SALIDA:</b> 03:45:39<br>
+         <b>RESPONSABLE DE INCUBADORA:</b>Andres C.<br>
+         <b>FECHA:</b>13-Marzo-2018<br>
         </td>
 
+         
          <td width="50%" style="text-align: right;">        
-         <b>Codigo:</b> R.50<br>
+         <b>Codigo:</b> R.51<br>
          <b>Revision:</b>00<br>
         </td>
       </tr>
-
 
 
       
@@ -250,9 +278,8 @@ $html.='<!DOCTYPE html>
 
     </TABLE>
 
-    </header';
+    </header>
 
-    $html.='
 
 
 
@@ -266,7 +293,7 @@ $html.='<!DOCTYPE html>
             <tr style=background-color:#E7F3EB >
               <td>Nro de nacimientos / semana</td>
               <td>'.$rpt_linea_genetica->cobb.'</td>
-              <td colspan="22" text-align=center>'.$rpt_linea_genetica->hybro.'</td>
+              <td colspan="22" text-align=center>Ross-Cobb</td>
             </tr>
            
            <tr id=tr_cabecera>
@@ -283,21 +310,26 @@ $html.='<!DOCTYPE html>
           
             <tr style=background-color:#E7F3EB>
               <td >Temperatura 24 a 27°C</td>
-               <td>'.$rpt_accion->encontrado.'</td>
+               <td></td>
                <td>Humedad 65% HR</td>
-               <td colspan="20">$VALOR</td>
-            </tr>
-
-            
-
-            
-
-              <tr>
+              <td colspan="20"></td>
+            </tr>                
+              <tr style=background-color:#E7F3EB>
               <td >Ventilación Forzada</td>
-              <td >'.$fila->presion.'</td>
+              <td >'.$rpt_detalle->esperado.'</td>
               <td >Presión Positiva</td>
+              <td colspan="20">'.$rpt_detalle->id.'</td></tr>
+                <tr style=background-color:#E7F3EB>
+              <td >Limpieza después de c/ vacunación</td>
+              <td ></td>
+              <td >Desinfección Post Limpieza</td>
               <td colspan="20"></td></tr>
-        
+
+          
+
+            
+
+         
                        
 
 
@@ -313,115 +345,68 @@ $html.='<!DOCTYPE html>
 
             <tr style=background-color:#E7F3EB>
               <td>Guantes y Lentes</td>
-               <td>$VALOR</td>
-               <td>T°27 a 37°C(Promedio 32°C)</td>
-               <td colspan="20">$VALOR</td>
+               <td></td>
+               <td>Calentador de Agua</td>
+               <td colspan="20"></td>
             </tr>
 
             <tr style=background-color:#E7F3EB>
-              <td>Rompe Ampollas</td>
-              <td>$VALOR</td>
-              <td>Jeringas 5 y/o 10ml</td>
-              <td colspan="20">$VALOR</td>
+              <td>Recipiente de Agua</td>
+              <td></td>
+              <td>Termómetro</td>
+              <td colspan="20"></td>
 
             </tr>
 
- <tr stylebackground-color:#E7F3EB>
-              <td>ro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
+ <tr style=background-color:#E7F3EB>
+              <td>T°27 a 37° C(Promedio 32°C)</td>
+              <td></td>
+              <td>Soporte de Ampollas</td>
+              <td colspan="20"></td>
             </tr>
          
 
-           <tr stylebackground-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-               <td>2(M y S)</td>
-               <td>Ross - Cobb</td>
-               <td colspan="20">Ross - Cobb</td>
-            </tr>
-
-            <tr stylebackground-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20"> Ross - Cobb</td>
-            </tr>
-
-
-
-<tr stylebackground-color:#E7F3EB>
-              <td>hhNro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
-            </tr>
-
-            <tr stylebackground-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
-
-            </tr>
-<tr stylebackground-color:#E7F3EB>
-              <td>hhNro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
-            </tr>
-
-
-
-<tr id=tr_cabecera>
-<th colspan="150" style="background-color: #025522" class="fuu">Sala de Vacunación</th></tr>
-
-             <tr style="background-color: #4CAF50" >
-              <td style="color: white" align=center>ESPERADO</td>
-              <td style="color: white"  align=center>ENCONTRADO</td>
-              <td style="color: white"  align=center>ESPERADO</td>
-              <td style="color: white" colspan="20" align=center>ENCONTRADO</td>
+           <tr style=background-color:#E7F3EB>
+              <td>Rompe Ampollas</td>
+               <td></td>
+               <td>Jeringa 5y/o 10 ml</td>
+               <td colspan="20"></td>
             </tr>
 
             <tr style=background-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-               <td>2(M y S)</td>
-               <td>Ross - Cobb</td>
-               <td colspan="20">Ross - Cobb</td>
+              <td>Aguja 18 Gx 18.1 1/2(rosada)</td>
+              <td></td>
+              <td>Alcohol</td>
+              <td colspan="20"> </td>
+            </tr>
+
+
+
+<tr style=background-color:#E7F3EB>
+              <td>Algodón</td>
+              <td></td>
+              <td>Papel Toalla</td>
+              <td colspan="20"></td>
             </tr>
 
             <tr style=background-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
+              <td>Colorante Marek Dosis</td>
+              <td></td>
+              <td>Tubería nueva para vacuna</td>
+              <td colspan="20"></td>
 
             </tr>
-
-    <tr style=background-color:#E7F3EB>
-              <td>hhNro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
+<tr style=background-color:#E7F3EB>
+              <td>Conectores "Y"</td>
+              <td></td>
+              <td>Esterilizador/Autoclave</td>
+              <td colspan="20"></td>
             </tr>
 
-           <tr style=background-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-               <td>2(M y S)</td>
-               <td>Ross - Cobb</td>
-               <td colspan="20">Ross - Cobb</td>
-            </tr>
-
-            
-           <tr style=background-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-               <td>2(M y S)</td>
-               <td>Ross - Cobb</td>
-               <td colspan="20">Ross - Cobb</td>
-            </tr>
-       
+      
 
       </table>
+      <br>
       <br>
       
         
@@ -431,19 +416,20 @@ $html.='<!DOCTYPE html>
 <br>
     <hr>
           <table id=manipulacion> 
+          
+
           <tr>
-          <th colspan=3 style="background-color: #025522" class="fuu">MANIPULACION Y DILUCION DE LA VACUNA CONGELADA</th>
+          <th colspan="4" style="background-color: #025522" class="fuu">MANIPULACION Y DILUCION DE LA VACUNA CONGELADA</th>
           </tr>
-    <tr>
-        <td colspan="2" style="background-color:#E7F3EB"><b>Asigna con (x)si el procedimiento estuviese siendo seguido:(Puntaje M&aacute;ximo 2.0) <b>
+
+
+
+
+ <tr>
+        <td colspan="3" style="background-color:#E7F3EB"><b>Asigna con (x)si el procedimiento estuviese siendo seguido:(Puntaje M&aacute;ximo 2.0) <b>
       <ol >
-            <li>Verificación del nivel de nitrógeno en formato (mínimo 6 pulgadas), obligatorio los días de vacunación </li>  
-
-
-
-
-
-            <li>Diluyente usado en buenas condiciones rojo y transparente </li>
+            <li>Verificación del nivel de nitrógeno en formato (mínimo 6 pulgadas), obligatorio los ías de vacunación </li>  
+           <li>Diluyente usado en buenas condiciones rojo y transparente </li>
             <li>Jeringas descartables individuales para cada tipo de vacuna, colorante y antibiótico (no usan) </li>
             <li>Tiempo mínimo para añadir antibiótico y colorante antes de preparar la vacuna  15 minutos </li>
             <li>Uso de colorante y dosis de 0.5 ml para bolsas 200 y 400 ml , 1 ml para 800 ml y 1.5 ml para 1200 y 1600 ml </li>
@@ -467,38 +453,318 @@ $html.='<!DOCTYPE html>
 
             
             
-<td  style="background-color:#E7F3EB" >
-<ul class="demo"  >
-           <li id="demo" >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-            <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-            <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-            <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li>
-           <li >  <input type="checkbox" /></li></ul>
+<td  style="background-color:#E7F3EB" colspan="2">
+<ol class="demo">
+           <li >  <input type="checkbox" checked="yes" /></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+            <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+            <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+            <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li>
+           <li >  <input type="checkbox" checked="yes"/></li></ol>
          </td></tr>
         
+   
+
+
 
 </table>
+          <br>
 
-            ';
+          <td><b>PUNTAJE:</b></td>
+
+
+            
+
+            <hr>
+
+<h3>MANTENIMIENTO Y LIMPIEZA DE LAS VACUNADORAS ACCUVAC</h3>
+     Asignar con una (x) kas irregularidades encontradas: (Puntaje Máximo Promedio 1.5)<br><br>
+
+
+             <table id=mantenimiento> 
+          <tr colspan="15">
+          <th style="background-color: #025522" colspan="10 ">Nombre del Vacunador</th>
+          <th style="background-color: #025522" colspan="4">Nº de Maquina</th>
+          <th colspan="15">
+          <th style="background-color: #025522" colspan="15" class="fuu">IRREGULARIDADES</th>
+          <tr style="background-color: #025522" colspan="15" class="fuu">
+                    <table id="irregularidades" >
+
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            </tr></table>
+          </th>
+          </tr>
+          </table>
+          ';
+
+          $html.='
+
+
+
+      <h3>IRREGULARIDADES</h3>
+      1.-Acumulo de suciedad o puntos en sucios en la placa de sensores Twin Touch<br>
+      2.-Falta de uno o mas tornillos visibles.<br>
+      3.-Presi&oacute;n de aire comprimido fuera de rango recomendado(65-75 psi para Twin Shot/Zootec)<br>
+      4.-Colocación incorrecta de la aguja (bisel hacia arriba)<br>
+      5.-Inadecuada regulación de la salida de la aguja o agujas, que provoca que vacuna quede en la parte interna de la maquina.<br> 
+6.-Colocación inadecuada de las jeringas y/o mangueras descartables.<br>
+7.-Falta de calibración de la dosis 0.2 ml en Marek y 0.1 ml en Oleosas.<br> 
+8.-No verificar la calibración de la dosis de la maquina cada 2,000 pollos vacunados.<br>
+9.-No cumplen con el cambio de agujas de la maquina cada 2,000 pollos vacunados.<br>
+10.-No tienen asperjadores con alcohol para la limpieza de la maquina cada 500 pollos vacunados.<br>
+11.-No se lavan las manos y desinfectan antes de  realizar el cambio de agujas de las maquinas.<br>
+12.-Acumulo de suciedad entre el modulo inyector y el modulo inferior de la maquina.<br>
+13.-Desarmado incorrecto y lavado inadecuado de las maquinas, uso de detergente y material abrasivos.<br>
+14.-Inadecuada esterilización de la válvula de control, debe ser a 121° C, a 15 psi de presión por 20 minutos envuelto en papel craf.<br>
+15.-Otras irregularidades. Especificar : <b></b><br>
+      
+
+<hr>
+<br>
+<br>
+         <br>
+<br> ';
+
+
+          $html.='
+<br>
+<br>
+          <h3>CONTROL DE INDICE DE EFICIENCIA DE VACUNACIONY PRODUCTIVIDAD</h3>
+     (Puntaje Máximo Índice de Eficiencia  5.5)     
+          <table id=control> 
+          <tr width="40" height="40">
+          <th width="150" style="background-color:#025522" >Nombre del Vacunador</th>
+          <th width="150" style="background-color:#025522">Nº Pollos Vacunados/Hora</th>
+          <th width="150" style="background-color:#025522">Puntaje</th>
+          <th width="150" style="background-color:#025522">Nº Pollos controlados</th>
+          <th width="150" style="background-color:#025522">Nº Pollos no vacunado</th>
+          <th width="150" style="background-color:#025522">Heridos</th>
+          <th width="150" style="background-color:#025522">Mojados</th>
+          <th width="150" style="background-color:#025522">Mala posición</th>
+          <th width="150" style="background-color:#025522">Nº Pollos vacunad correctame</th>
+          <th width="150" style="background-color:#025522">% de Eficiencia</th>
+          </tr>
+
+      <tr>
+        <td style="background-color:#E7F3EB" >Promedio</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+      </tr>
+    
+       <tr>
+        <td style="background-color:#E7F3EB">Sumatoria</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+      </tr>
+      
+
+          
+      </TABLE>
+          
+          <br>
+          PUNTAJE:  5  
+          <br>
+          <br>
+
+          ';
+
+ 
+          $html.='
+
+          <br>
+<hr>
+<br>
+
+<table id=puntajetotal>
+<tr >
+  <th  colspan="2" style="background-color:#025522" > PUNTAJE TOTAL OBTENIDO</th>
+</tr>
+<tr>
+  <td style="background-color:#E7F3EB">MANIPULACION Y DILUCION DE LA VACUNA CONGELADA</td>
+  <td style="background-color:#E7F3EB"> 0</td>
+</tr>
+<tr>
+  <td style="background-color:#E7F3EB">MANTENIMIENTO Y LIMPIEZA DE LAS VACUNADORAS ACCUVAC</td>
+  <td style="background-color:#E7F3EB" > 1</td>
+</tr>
+<tr>
+  <td  style="background-color:#E7F3EB">INDICE DE EFICIENCIA DE VACUNACION</td>
+  <td  style="background-color:#E7F3EB">1</td>
+</tr>
+<tr >
+  <td style="background-color:#E7F3EB">PRODUCTIVIDAD</td>
+  <td style="background-color:#E7F3EB">1</td>
+</tr>
+<tr>
+  <td style="background-color:#E7F3EB">PUNTAJE TOTAL </td>
+  <td style="background-color:#E7F3EB">1</td>
+</tr>
+</table>
+
+
+          ';
+
+          $html.='
+
+          <br>
+<hr>
+<h3>VIABILIDAD CELULAR</h3>
+<table id=control>
+<tr class="fuu">
+  <th style="background-color:#025522" width=250px>ANTIBIOTICO</th>
+  <th style="background-color:#025522" width=250px>DOSIS</th>
+  <th style="background-color:#025522" width=250px>TIEMPO (min)</th>
+  <th style="background-color:#025522" width=250px>VC % </th>
+</tr>
+
+ <tr>
+  <th style="background-color:#E7F3EB"><p style=color:black;>ANTIBIOTICO # 1</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  </tr>
+
+   <tr>
+    <th style="background-color:#E7F3EB"><p style=color:black;>ANTIBIOTICO # 2</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  </tr>
+
+
+   <tr>
+    <th style="background-color:#E7F3EB"><p style=color:black;>ANTIBIOTICO # 3</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  </tr>
+
+   <tr>
+    <th style="background-color:#E7F3EB"><p style=color:black;>ANTIBIOTICO # 4</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  <th style="background-color:#E7F3EB"><p style=color:black;>0</th>
+  </tr>
+
+</table>
+<table>
+<tr class="fuu">
+  <th style="background-color:#E7F3EB" text-align:left width=650px><p style=color:black; >VC: Viabilidad Celular</th>
+ <th style="background-color:#E7F3EB" width=150px><p style=color:black;>0</th></tr></table>
+
+<hr>
+<h3>RECOMENDACIONES</h3>
+recomendaciones
+<br>
+
+<hr>';
 
 
 
 
+
+
+$html.="<br><br><br><table id=tabla_firmajefe>
+
+
+
+
+<tr  >
+<th style='background-color: #025522'>IMAGEN DE JEFE DE PLANTA</th>
+</tr>
+<tr>
+<td >
+<img src='imagen/jefe.jpg' width=300px />
+</td>
+</tr>
+</table>
+<br>
+<br>
+<br>
+";
+
+$html.="<table >
+<tr >
+<th style='background-color: #025522'>FIRMA INVETSA</th>
+<th style='background-color: #025522'>FIRMA EMPRESA</th>
+</tr>
+<tr>
+<td>
+<img src='imagen/firma1.jpg' width=300px/>
+</td>
+<td>
+<img src='imagen/firma1.jpg' width=300px/>
+</td>
+</tr>
+</table>
+";
+   /*
+if(file_exists("../".$rpt_sim->firma_invetsa))
+{
+  $contenido=file_get_contents("../".$rpt_sim->firma_invetsa);
+
+header("Content-Type: image/png");
+echo $contenido;
+}
+else
+{
+  echo "no existe";
+}
+?>
+*/
+$html.='
+    <footer>
+  <table id=tabla_firmajefe>
+  <tr>
+<td > <img src="imagen/pollito1.png" align="center" width="20%"></td></tr>
+</table>
+    </footer>
+  </body>
+ 
+</html>
+';
 
 
 
@@ -517,4 +783,3 @@ if(isset($_POST['descargar']))
 }
 
 ?>
-
