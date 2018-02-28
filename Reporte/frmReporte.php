@@ -19,7 +19,7 @@ include_once ('../clsDetalle_inspeccion_visual.php');
 include_once ('../clsDetalle_inspeccion_funcionamiento.php');
 
 
-rpt_sistema_integral("19");
+rpt_sistema_integral("4");
 
 //rpt_formulario_twin_shot("1");
 
