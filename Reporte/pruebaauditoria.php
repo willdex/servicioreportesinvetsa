@@ -17,7 +17,7 @@ include_once('../clsAccion.php');
 
 //rpt_sistema_integral("15");
 
-rpt_hoja_verificacion("29");
+rpt_hoja_verificacion("11");
 
 function rpt_hoja_verificacion($id_verificacion)
 { 
@@ -250,8 +250,9 @@ $html.='<!DOCTYPE html>
 
     </TABLE>
 
-    </header>
+    </header';
 
+    $html.='
 
 
 
@@ -289,30 +290,14 @@ $html.='<!DOCTYPE html>
 
             
 
-            </tr>';
+            
 
-            if($rpt_accion!="-1"){
-              while ($fila=mysqli_fetch_object($rpt_accion)) {
-                if($fila->id=="1")
-              {
-                $html.='<tr style="background:#61579c;">';
-
-              }  # code...
-              else
-              {
-                  $html.='<tr>';
-
-              }
-
-              $html.='
               <tr>
               <td >Ventilación Forzada</td>
               <td >'.$fila->presion.'</td>
               <td >Presión Positiva</td>
-              <td colspan="20"></td></tr>';
-              }
-
-            }';
+              <td colspan="20"></td></tr>
+        
                        
 
 
