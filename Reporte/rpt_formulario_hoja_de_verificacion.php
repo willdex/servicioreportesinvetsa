@@ -440,8 +440,8 @@ $rpt_mantenimiento_limpieza=$mantenimiento_limpieza->get_formulario_por_id_hoja(
 
 <h3>MANTENIMIENTO Y LIMPIEZA DE LAS VACUNADORAS ACCUVAC</h3>
      Asignar con una (x) kas irregularidades encontradas: (Puntaje Máximo Promedio 1.5)<br><br><br>  
-          <table id=manteminimiento> 
-          <t>
+          <table id=mantenimiento> 
+          <tr>
           <th style="background-color: #025522" colspan="10 ">Nombre del Vacunador</th>
           <th style="background-color: #025522" colspan="4">Nº de Maquina</th>
           <th colspan="15">

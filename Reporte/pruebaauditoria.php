@@ -134,24 +134,27 @@ $html.='<!DOCTYPE html>
           width: 50px;
           border: 1px solid #000;
           font-size: 14px;
-           margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-    height: 400px;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: left;
+          height: 400px;
   }
-     
+
+     #mantenimiento{
+      width: 850px;
+      background-color: #025522;
+}
 
            #manipulacion  {
-          width: 850px;
-          border: 1px solid #000;
-          font-size:15px;
-           margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-    height: 400px;
+            width: 850px;
+            border: 1px solid #000;
+            font-size:15px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            height: 400px;
   } 
         #input{
-
         width: 200px;
         height: 200px;
         align-content: right;
@@ -160,13 +163,16 @@ $html.='<!DOCTYPE html>
 
         #irregularidades tr th
        {
+
         border: 1px solid #000;
         padding-left: 8px;
         width: 30px;
 
        }
+
        #irregularidades tr td
        {
+
         border: 2px solid #000;
         padding-left: 8px;
         border-bottom: 1px;
@@ -270,7 +276,7 @@ $html.='<!DOCTYPE html>
             <tr style=background-color:#E7F3EB >
               <td>Nro de nacimientos / semana</td>
               <td>'.$rpt_linea_genetica->cobb.'</td>
-              <td colspan="22" text-align=center>'.$rpt_linea_genetica->hybro.'</td>
+              <td colspan="22" text-align=center>Ross-Cobb</td>
             </tr>
            
            <tr id=tr_cabecera>
@@ -287,9 +293,9 @@ $html.='<!DOCTYPE html>
           
             <tr style=background-color:#E7F3EB>
               <td >Temperatura 24 a 27°C</td>
-               <td>'.$rpt_linea_genetica->cobb.'</td>
+               <td></td>
                <td>Humedad 65% HR</td>
-               <td colspan="20">'.$rpt_linea_genetica->cobb.'</td>
+              <td colspan="20"></td>
             </tr>                
               <tr>
               <td >Ventilación Forzada</td>
@@ -324,14 +330,14 @@ $html.='<!DOCTYPE html>
               <td>Guantes y Lentes</td>
                <td></td>
                <td>Calentador de Agua</td>
-               <td colspan="20">$VALOR</td>
+               <td colspan="20"></td>
             </tr>
 
             <tr style=background-color:#E7F3EB>
               <td>Recipiente de Agua</td>
               <td></td>
               <td>Termómetro</td>
-              <td colspan="20">$VALOR</td>
+              <td colspan="20"></td>
 
             </tr>
 
@@ -345,94 +351,50 @@ $html.='<!DOCTYPE html>
 
            <tr stylebackground-color:#E7F3EB>
               <td>Rompe Ampollas</td>
-               <td>2(M y S)</td>
-               <td>Ross - Cobb</td>
-               <td colspan="20">Ross - Cobb</td>
+               <td></td>
+               <td>Jeringa 5y/o 10 ml</td>
+               <td colspan="20"></td>
             </tr>
 
             <tr stylebackground-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20"> Ross - Cobb</td>
+              <td>Aguja 18 Gx 18.1 1/2(rosada)</td>
+              <td></td>
+              <td>Alcohol</td>
+              <td colspan="20"> </td>
             </tr>
 
 
 
 <tr stylebackground-color:#E7F3EB>
-              <td>hhNro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
+              <td>Algodón</td>
+              <td></td>
+              <td>Papel Toalla</td>
+              <td colspan="20"></td>
             </tr>
 
             <tr stylebackground-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
+              <td>Colorante Marek Dosis</td>
+              <td></td>
+              <td>Tubería nueva para vacuna</td>
+              <td colspan="20"></td>
 
             </tr>
 <tr stylebackground-color:#E7F3EB>
-              <td>hhNro de nacimientos / semana</td>
+              <td>Conectores "Y"</td>
               <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
+              <td>Esterilizador/Autoclave</td>
+              <td colspan="20"></td>
             </tr>
 
 
 
-<tr id=tr_cabecera>
-<th colspan="150" style="background-color: #025522" class="fuu">Sala de Vacunación</th></tr>
 
-             <tr style="background-color: #4CAF50" >
-              <td style="color: white" align=center>ESPERADO</td>
-              <td style="color: white"  align=center>ENCONTRADO</td>
-              <td style="color: white"  align=center>ESPERADO</td>
-              <td style="color: white" colspan="20" align=center>ENCONTRADO</td>
-            </tr>
-
-            <tr style=background-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-               <td>2(M y S)</td>
-               <td>Ross - Cobb</td>
-               <td colspan="20">Ross - Cobb</td>
-            </tr>
-
-            <tr style=background-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
-
-            </tr>
-
-    <tr style=background-color:#E7F3EB>
-              <td>hhNro de nacimientos / semana</td>
-              <td>2(M y S)</td>
-              <td>Ross - Cobb</td>
-              <td colspan="20">Ross - Cobb</td>
-            </tr>
-
-           <tr style=background-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-               <td>2(M y S)</td>
-               <td>Ross - Cobb</td>
-               <td colspan="20">Ross - Cobb</td>
-            </tr>
-
-            
-           <tr style=background-color:#E7F3EB>
-              <td>Nro de nacimientos / semana</td>
-               <td>2(M y S)</td>
-               <td>Ross - Cobb</td>
-               <td colspan="20">Ross - Cobb</td>
-            </tr>
        
 
       </table>
       <br>
-      
+      <br>
+      <br>
         
       
      <br>
@@ -500,13 +462,171 @@ $html.='<!DOCTYPE html>
            <li >  <input type="checkbox" /></li></ul>
          </td></tr>
         
+   
+
+
 
 </table>
+          <br>
 
-            ';
+          <td><b>PUNTAJE:</b></td>
+
+
+            
+
+            <hr>
+
+<h3>MANTENIMIENTO Y LIMPIEZA DE LAS VACUNADORAS ACCUVAC</h3>
+     Asignar con una (x) kas irregularidades encontradas: (Puntaje Máximo Promedio 1.5)<br><br>
+
+
+             <table id=mantenimiento> 
+          <tr colspan="15">
+          <th style="background-color: #025522" colspan="10 ">Nombre del Vacunador</th>
+          <th style="background-color: #025522" colspan="4">Nº de Maquina</th>
+          <th colspan="15">
+          <th style="background-color: #025522" colspan="15" class="fuu">IRREGULARIDADES</th>
+          <tr style="background-color: #025522" colspan="15" class="fuu">
+                    <table id="irregularidades" >
+
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            </tr></table>
+          </th>
+          </tr>
+          </table>
+          ';
+
+          $html.='
 
 
 
+      <h3>IRREGULARIDADES</h3>
+      1.-Acumulo de suciedad o puntos en sucios en la placa de sensores Twin Touch<br>
+      2.-Falta de uno o mas tornillos visibles.<br>
+      3.-Presi&oacute;n de aire comprimido fuera de rango recomendado(65-75 psi para Twin Shot/Zootec)<br>
+      4.-Colocación incorrecta de la aguja (bisel hacia arriba)<br>
+      5.-Inadecuada regulación de la salida de la aguja o agujas, que provoca que vacuna quede en la parte interna de la maquina.<br> 
+6.-Colocación inadecuada de las jeringas y/o mangueras descartables.<br>
+7.-Falta de calibración de la dosis 0.2 ml en Marek y 0.1 ml en Oleosas.<br> 
+8.-No verificar la calibración de la dosis de la maquina cada 2,000 pollos vacunados.<br>
+9.-No cumplen con el cambio de agujas de la maquina cada 2,000 pollos vacunados.<br>
+10.-No tienen asperjadores con alcohol para la limpieza de la maquina cada 500 pollos vacunados.<br>
+11.-No se lavan las manos y desinfectan antes de  realizar el cambio de agujas de las maquinas.<br>
+12.-Acumulo de suciedad entre el modulo inyector y el modulo inferior de la maquina.<br>
+13.-Desarmado incorrecto y lavado inadecuado de las maquinas, uso de detergente y material abrasivos.<br>
+14.-Inadecuada esterilización de la válvula de control, debe ser a 121° C, a 15 psi de presión por 20 minutos envuelto en papel craf.<br>
+15.-Otras irregularidades. Especificar : <b></b><br>
+      
+
+<hr>
+
+          ';
+
+
+          $html.='
+
+          <h3>CONTROL DE INDICE DE EFICIENCIA DE VACUNACIONY PRODUCTIVIDAD</h3>
+     (Puntaje Máximo Índice de Eficiencia  5.5)     
+          <table id=control> 
+          <tr width="40" height="40">
+          <th width="150" style="background-color:#025522" >Nombre del Vacunador</th>
+          <th width="150" style="background-color:#025522">Nº Pollos Vacunados/Hora</th>
+          <th width="150" style="background-color:#025522">Puntaje</th>
+          <th width="150" style="background-color:#025522">Nº Pollos controlados</th>
+          <th width="150" style="background-color:#025522">Nº Pollos no vacunado</th>
+          <th width="150" style="background-color:#025522">Heridos</th>
+          <th width="150" style="background-color:#025522">Mojados</th>
+          <th width="150" style="background-color:#025522">Mala posición</th>
+          <th width="150" style="background-color:#025522">Nº Pollos vacunad correctame</th>
+          <th width="150" style="background-color:#025522">% de Eficiencia</th>
+          </tr>
+
+      <tr>
+        <td style="background-color:#E7F3EB" >Promedio</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+      </tr>
+    
+       <tr>
+        <td style="background-color:#E7F3EB">Sumatoria</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+        <td style="background-color:#E7F3EB">0</td>
+      </tr>
+      
+
+          
+      </TABLE>
+          
+          <br>
+          PUNTAJE:5  
+          <br>
+          <br>
+
+          ';
+
+ 
+          $html.='
+
+          <br>
+<hr>
+<br>
+
+<table id=control>
+<tr>
+  <th colspan="2" style="background-color:#025522" class="fuu"> PUNTAJE TOTAL OBTENIDO</th>
+</tr>
+<tr>
+  <td style="background-color:#E7F3EB">MANIPULACION Y DILUCION DE LA VACUNA CONGELADA</td>
+  <td style="background-color:#E7F3EB"> 0</td>
+</tr>
+<tr>
+  <td style="background-color:#E7F3EB">MANTENIMIENTO Y LIMPIEZA DE LAS VACUNADORAS ACCUVAC</td>
+  <td style="background-color:#E7F3EB" colspan="10"> 1</td>
+</tr>
+<tr>
+  <td  style="background-color:#E7F3EB">INDICE DE EFICIENCIA DE VACUNACION</td>
+  <td  colspan="10" style="background-color:#E7F3EB">1</td>
+</tr>
+<tr colspan="10">
+  <td style="background-color:#E7F3EB">PRODUCTIVIDAD</td>
+  <td style="background-color:#E7F3EB">1</td>
+</tr>
+<tr>
+  <td style="background-color:#E7F3EB">PUNTAJE TOTAL </td>
+  <td style="background-color:#E7F3EB">1</td>
+</tr>
+</table>
+
+
+          ';
 
 
 
@@ -526,4 +646,3 @@ if(isset($_POST['descargar']))
 }
 
 ?>
-
