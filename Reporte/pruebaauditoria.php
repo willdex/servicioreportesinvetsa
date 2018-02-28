@@ -12,7 +12,6 @@ include_once('../clsMantenimiento_limpieza.php');
 include_once('../clsControl_indice.php');
 include_once('../clsLinea_genetica.php');
 include_once('../clsViabilidad_celular.php');
-include_once('../clsAccion.php');
 
 
 //rpt_sistema_integral("15");
@@ -49,7 +48,6 @@ $rpt_hoja=$hoja_verificacion->get_formulario_por_id($id_hoja);
 
 $rpt_accion=$accion->get_formulario_por_id_hoja($id_hoja);
 
-$rpt_detalle=$detalle_accion->get_formulario_por_id_hoja_y_id_accion($id_hoja);
 
 
 $rpt_manipulacion_dilucion=$manipulacion_dilucion->get_formulario_por_id_hoja($id_hoja);
@@ -632,7 +630,7 @@ $html.='<!DOCTYPE html>
 
 
 $mPDF=new mPDF("c","LEGAL");
-$html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+$html = mb_convert_encoding($html, 'UTF-8');
 
 $mPDF->writeHTML($html);
 
